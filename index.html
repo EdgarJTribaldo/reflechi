@@ -149,6 +149,65 @@
                 font-size: 1rem;
             }
         }
+        
+        /* Estilos para el modal de estado de ánimo */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+            background-color: var(--container-bg);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid var(--primary-color);
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        
+        .close {
+            color: var(--primary-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #00cc00;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .mood-btn-group {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .mood-btn {
+            margin: 5px;
+            padding: 10px 20px;
+        }
+        
+        #moodLog {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 20, 0, 0.5);
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
@@ -157,13 +216,32 @@
         <h1>Reflexiones Digitales</h1>
         <div class="btn-group">
             <button id="logThoughtBtn">Registrar pensamiento</button>
+            <button id="logMoodBtn">Registrar estado de ánimo</button>
             <button id="downloadHistoryBtn">Descargar historial</button>
             <button id="uploadHistoryBtn">Subir historial</button>
         </div>
         <input type="file" id="fileInput" style="display: none;">
         <div id="thoughtLog"></div>
+        <div id="moodLog"></div>
         <p class="motivation-quote">"En el código de la vida, tú eres el programador de tu destino."</p>
     </div>
+    
+    <!-- Modal para el registro de estado de ánimo -->
+    <div id="moodModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>¿Cómo te sientes?</h2>
+            <div class="mood-btn-group">
+                <button class="mood-btn" data-mood="Feliz">😊 Feliz</button>
+                <button class="mood-btn" data-mood="Tranquilo">😌 Tranquilo</button>
+                <button class="mood-btn" data-mood="Neutral">😐 Neutral</button>
+                <button class="mood-btn" data-mood="Ansioso">😰 Ansioso</button>
+                <button class="mood-btn" data-mood="Triste">😢 Triste</button>
+                <button class="mood-btn" data-mood="Enojado">😠 Enojado</button>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="main.js"></script>
 </body>

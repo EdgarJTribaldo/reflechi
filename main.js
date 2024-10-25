@@ -99,3 +99,94 @@ document.getElementById('fileInput').addEventListener('change', uploadHistory);
 
 // Mostrar los pensamientos existentes al cargar la página
 displayThoughts();
+
+// Función para registrar el estado de ánimo
+function logMood(mood) {
+    const now = new Date();
+    const moodEntry = {
+        mood: mood,
+        timestamp: now.toISOString()
+    };
+
+    // Obtener registros existentes
+    let moodLog = [];
+    const encryptedMoodLog = localStorage.getItem('encryptedMoodLog');
+    if (encryptedMoodLog) {
+        moodLog = decryptData(encryptedMoodLog, SECRET_KEY);
+    }
+    moodLog.push(moodEntry);
+
+    // Encriptar y guardar
+    const encryptedData = encryptData(moodLog, SECRET_KEY);
+    localStorage.setItem('encryptedMoodLog', encryptedData);
+
+    // Actualizar visualización
+    displayMoodLog();
+}
+
+// Función para mostrar el historial de estados de ánimo
+function displayMoodLog() {
+    const moodLogElement = document.getElementById('moodLog');
+    if (!moodLogElement) return; // Verificar si el elemento existe
+
+    moodLogElement.innerHTML = '';
+
+    const encryptedMoodLog = localStorage.getItem('encryptedMoodLog');
+    if (encryptedMoodLog) {
+        try {
+            const moodLog = decryptData(encryptedMoodLog, SECRET_KEY);
+            moodLog.forEach(entry => {
+                const moodItem = document.createElement('p');
+                moodItem.textContent = `${new Date(entry.timestamp).toLocaleString()}: ${entry.mood}`;
+                moodLogElement.appendChild(moodItem);
+            });
+        } catch (error) {
+            console.error('Error al desencriptar el registro de estados de ánimo:', error);
+        }
+    }
+}
+
+// Obtener el modal
+const modal = document.getElementById("moodModal");
+
+// Obtener el botón que abre el modal
+const btn = document.getElementById("logMoodBtn");
+
+// Obtener el elemento <span> que cierra el modal
+const span = document.getElementsByClassName("close")[0];
+
+// Cuando el usuario hace clic en el botón, abrir el modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Cuando el usuario hace clic en <span> (x), cerrar el modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Cuando el usuario hace clic fuera del modal, cerrarlo
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Evento para abrir el modal de selección de estado de ánimo
+document.getElementById('logMoodBtn').addEventListener('click', () => {
+    // Aquí deberías implementar la lógica para abrir el modal
+    console.log('Abrir modal de estado de ánimo');
+});
+
+// Eventos para los botones de estado de ánimo en el modal
+document.querySelectorAll('.mood-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        logMood(e.target.dataset.mood);
+        // Aquí deberías implementar la lógica para cerrar el modal
+        console.log('Estado de ánimo registrado:', e.target.dataset.mood);
+    });
+});
+
+// Inicializar la visualización de pensamientos y estados de ánimo al cargar la página
+displayThoughts();
+displayMoodLog();
