@@ -1,17 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reflexiones Digitales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #000000;
+            color: #00ff00;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            background-color: rgba(0, 20, 0, 0.8);
+            border: 1px solid #00ff00;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #00ff00;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #00ff00;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #003300;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        button:hover {
+            background-color: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 10px #00ff00;
+        }
+        #thoughtLog {
+            background-color: rgba(0, 20, 0, 0.5);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        #thoughtLog p {
+            border-left: 2px solid #00ff00;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: rgba(0, 20, 0, 0.3);
+        }
+        .motivation-quote {
+            text-align: center;
+            font-style: italic;
+            color: #00ff00;
+            margin-top: 30px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+        @keyframes matrixRain {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .matrix-bg::before {
+            content: "01010101010101010101";
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 20px;
+            color: #00ff00;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            animation: matrixRain 20s linear infinite;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 <body>
-      <!-- ... código existente ... -->
-  <button id="logThoughtBtn">Registrar pensamiento</button>
-  <div id="thoughtLog"></div>
-  <!-- ... código existente ... -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-
-   <script type="module" src="main.js"></script>
+    <div class="matrix-bg"></div>
+    <div class="container">
+        <h1>Reflexiones Digitales</h1>
+        <div class="btn-group">
+            <button id="logThoughtBtn">Registrar pensamiento</button>
+            <button id="downloadHistoryBtn">Descargar historial</button>
+            <button id="uploadHistoryBtn">Subir historial</button>
+        </div>
+        <input type="file" id="fileInput" style="display: none;">
+        <div id="thoughtLog"></div>
+        <p class="motivation-quote">"En el código de la vida, tú eres el programador de tu destino."</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

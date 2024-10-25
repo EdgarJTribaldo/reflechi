@@ -60,8 +60,42 @@ function displayThoughts() {
     }
 }
 
+// Función para descargar el historial
+function downloadHistory() {
+    const encryptedThoughts = localStorage.getItem('encryptedThoughts');
+    if (encryptedThoughts) {
+        const blob = new Blob([encryptedThoughts], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'pensamientos_encriptados.txt';
+        a.click();
+    } else {
+        alert('No hay pensamientos para descargar.');
+    }
+}
+
+// Función para subir el historial
+function uploadHistory(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const encryptedThoughts = e.target.result;
+            localStorage.setItem('encryptedThoughts', encryptedThoughts);
+            displayThoughts();
+            alert('Historial cargado con éxito.');
+        };
+        reader.readAsText(file);
+    }
+}
+
 // Agregar el evento click al botón
 document.getElementById('logThoughtBtn').addEventListener('click', logThought);
+
+// Agregar eventos a los nuevos botones
+document.getElementById('downloadHistoryBtn').addEventListener('click', downloadHistory);
+document.getElementById('uploadHistoryBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+document.getElementById('fileInput').addEventListener('change', uploadHistory);
 
 // Mostrar los pensamientos existentes al cargar la página
 displayThoughts();
