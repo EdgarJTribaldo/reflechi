@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #fff;
-    --bg-color: #fff;
-    --container-bg: rgba(209, 229, 255, 0.8);
+    --primary-color: rgba(43, 135, 255, 0.8);
+    --bg-color: rgba(150, 194, 252, 0.8);
+    --container-bg: rgba(227, 209, 255, 0.8);
 }
 
 body {
