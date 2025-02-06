@@ -10,11 +10,7 @@ function horaActual(){
         minute: '2-digit',
         second: '2-digit'
     }
-    let hora = fecha.getHours();
-    let minuto = fecha.getMinutes();
-    let segundo = fecha.getSeconds();
-    let horaImprimible = hora + ":" + minuto + ":" + segundo + " | " + dia;
-    console.log(horaImprimible);
+    return fecha.toLocaleString('es-ES', options);
 }
 
 horaActual();
