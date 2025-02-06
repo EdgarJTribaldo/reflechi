@@ -2,17 +2,23 @@
 // Hora actual
 function horaActual(){
     let fecha = new Date();
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }
     let hora = fecha.getHours();
     let minuto = fecha.getMinutes();
     let segundo = fecha.getSeconds();
-    let dia = fecha.getDay();
     let horaImprimible = hora + ":" + minuto + ":" + segundo + " | " + dia;
     console.log(horaImprimible);
 }
 
 horaActual();
 
-debugger;
 // Función para encriptar datos
 function encryptData(data, secretKey) {
     return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
