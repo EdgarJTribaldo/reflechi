@@ -190,3 +190,21 @@ document.querySelectorAll('.mood-btn').forEach(btn => {
 // Inicializar la visualización de pensamientos y estados de ánimo al cargar la página
 displayThoughts();
 displayMoodLog();
+
+// Al inicio del archivo, después de las otras declaraciones
+document.addEventListener('DOMContentLoaded', () => {
+    // Cargar el estado guardado de los checkboxes
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    days.forEach(day => {
+        const checkbox = document.getElementById(day);
+        const savedState = localStorage.getItem(`meditation-${day}`);
+        if (savedState) {
+            checkbox.checked = JSON.parse(savedState);
+        }
+        
+        // Agregar evento para guardar el estado cuando cambie
+        checkbox.addEventListener('change', (e) => {
+            localStorage.setItem(`meditation-${day}`, e.target.checked);
+        });
+    });
+});
