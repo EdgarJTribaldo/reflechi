@@ -209,6 +209,7 @@ button:hover, button:focus {
     color: #0f0;
     margin-bottom: 15px;
     text-align: center;
+    font-size: 1.2rem;
 }
 
 .week-grid {
@@ -232,6 +233,43 @@ button:hover, button:focus {
     font-size: 0.9em;
 }
 
+/* Estilos responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+    .week-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 días por fila */
+        gap: 8px;
+    }
+    
+    .day-box {
+        padding: 8px;
+    }
+    
+    .day-box span {
+        font-size: 0.8em;
+    }
+    
+    .meditation-tracker h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 400px) {
+    .week-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 días por fila */
+        gap: 6px;
+    }
+    
+    .meditation-tracker {
+        padding: 15px;
+    }
+    
+    .day-box {
+        padding: 6px;
+    }
+}
+
+/* Mantener el tamaño del checkbox consistente */
 .meditation-check {
     appearance: none;
     width: 20px;
@@ -240,6 +278,8 @@ button:hover, button:focus {
     border-radius: 4px;
     cursor: pointer;
     position: relative;
+    min-width: 20px; /* Asegura un tamaño mínimo */
+    min-height: 20px;
 }
 
 .meditation-check:checked {
