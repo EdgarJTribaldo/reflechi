@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #00ff00;
+    --primary-color: #0000;
     --bg-color: #fff;
     --container-bg: rgba(0, 20, 0, 0.8);
 }
@@ -19,7 +19,6 @@ body {
 }
 
 .container {
-    background-color: var(--container-bg);
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     box-shadow: 0 0 10px var(--primary-color);
