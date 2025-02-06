@@ -1,7 +1,7 @@
 
 // Hora actual
 function horaActual(){
-    let fecha = new Date();
+    const fecha = new Date();
     const options = {
         weekday: 'long',
         year: 'numeric',
@@ -10,10 +10,16 @@ function horaActual(){
         minute: '2-digit',
         second: '2-digit'
     }
+    // toLocaleString('es-ES', options) devuelve la fecha en formato local y en español (una especie de formateo automatico
     return fecha.toLocaleString('es-ES', options);
 }
 
-horaActual();
+function mostrarHora(){
+    document.getElementById('reloj').textContent = horaActual();
+}
+
+setInterval(mostrarHora, 1000);
+
 
 // Función para encriptar datos
 function encryptData(data, secretKey) {
