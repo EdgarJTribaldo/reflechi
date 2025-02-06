@@ -8,12 +8,24 @@ function horaActual(){
         month: 'long',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        second: '2-digit',
+        hour12: true // Añade formato AM/PM
+
     }
     // toLocaleString('es-ES', options) devuelve la fecha en formato local y en español (una especie de formateo automatico
     return fecha.toLocaleString('es-ES', options);
 }
+let intervalId;
 
+function iniciarReloj(){
+    // Limpia intervalo previo si existe
+    if(intervalId) clearInterval(intervalId)
+        // Actualiza inmediatamente
+
+        mostrarHora();
+        intervalId = setInterval(mostrarHora, 1000);
+
+}
 function mostrarHora(){
     document.getElementById('reloj').textContent = horaActual();
 }
