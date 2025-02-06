@@ -30,10 +30,9 @@ body {
 }
 
 h1 {
-    color: var(--primary-color);
-    text-align: center;
+    color: white;
+    text-align: left;
     margin-bottom: 20px;
-    text-shadow: 0 0 5px var(--primary-color);
     font-size: 1.5rem;
 }
 
@@ -49,7 +48,7 @@ button {
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     padding: 12px 20px;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'Share Tech Mono', monospace;
@@ -60,7 +59,6 @@ button {
 button:hover, button:focus {
     background-color: var(--primary-color);
     color: var(--bg-color);
-    box-shadow: 0 0 10px var(--primary-color);
 }
 
 #thoughtLog {
