@@ -1,3 +1,11 @@
+function horaActual(){
+    var fecha = new Date();
+    var hora = fecha.getHours();
+    var minuto = fecha.getMinutes();
+    var segundo = fecha.getSeconds();
+    var horaImprimible = hora + ":" + minuto + ":" + segundo;
+    console.log(horaImprimible);
+}
 // Función para encriptar datos
 function encryptData(data, secretKey) {
     return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
